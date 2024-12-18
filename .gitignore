@@ -13,3 +13,5 @@
 /.idea/
 /.env.*.local
 /.env.local
+
+/db/test.db
