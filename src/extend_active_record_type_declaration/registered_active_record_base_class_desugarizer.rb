@@ -1,6 +1,6 @@
 module Foobara
-  module TypeDeclarations
-    module Handlers
+  module ActiveRecordType
+    module TypeDeclarationHandlers
       class RegisteredTypeDeclaration < TypeDeclarationHandler
         class RegisteredActiveRecordBaseClassDesugarizer < TypeDeclarations::Desugarizer
           def applicable?(klass)

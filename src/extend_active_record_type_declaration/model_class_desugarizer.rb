@@ -1,6 +1,6 @@
 module Foobara
-  module TypeDeclarations
-    module Handlers
+  module ActiveRecordType
+    module TypeDeclarationHandlers
       class ExtendActiveRecordTypeDeclaration < ExtendDetachedEntityTypeDeclaration
         class ModelClassDesugarizer < ExtendDetachedEntityTypeDeclaration::ModelClassDesugarizer
           def expected_type_symbol

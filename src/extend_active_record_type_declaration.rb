@@ -1,6 +1,6 @@
 module Foobara
-  module TypeDeclarations
-    module Handlers
+  module ActiveRecordType
+    module TypeDeclarationHandlers
       class ExtendActiveRecordTypeDeclaration < ExtendDetachedEntityTypeDeclaration
         def applicable?(*args, **opts, &)
           arg = args.first
