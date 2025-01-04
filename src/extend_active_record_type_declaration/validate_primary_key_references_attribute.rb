@@ -1,10 +1,8 @@
 module Foobara
   module ActiveRecordType
-    module TypeDeclarationHandlers
-      class ExtendActiveRecordTypeDeclaration < ExtendDetachedEntityTypeDeclaration
-        class ValidatePrimaryKeyReferencesAttribute <
-          ExtendDetachedEntityTypeDeclaration::ValidatePrimaryKeyReferencesAttribute
-        end
+    class ExtendActiveRecordTypeDeclaration < TypeDeclarations::Handlers::ExtendDetachedEntityTypeDeclaration
+      class ValidatePrimaryKeyReferencesAttribute <
+        TypeDeclarations::Handlers::ExtendDetachedEntityTypeDeclaration::ValidatePrimaryKeyReferencesAttribute
       end
     end
   end

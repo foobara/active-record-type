@@ -55,6 +55,13 @@ RSpec.describe "creating a foobara :active_record type" do
         expect(cast_capybara).to respond_to(:age)
       end
     end
+
+    context "when already registered" do
+      it "returns the already-registered type" do
+        new_type = Foobara::GlobalDomain.foobara_type_from_declaration(type.target_class)
+        expect(new_type).to be(SomeDomain::Capybara.foobara_type)
+      end
+    end
   end
 
   context "when declaring via strict type declaration" do

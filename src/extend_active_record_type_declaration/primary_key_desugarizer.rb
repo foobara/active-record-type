@@ -1,9 +1,8 @@
 module Foobara
   module ActiveRecordType
-    module TypeDeclarationHandlers
-      class ExtendActiveRecordTypeDeclaration < ExtendDetachedEntityTypeDeclaration
-        class PrimaryKeyDesugarizer < ExtendDetachedEntityTypeDeclaration::PrimaryKeyDesugarizer
-        end
+    class ExtendActiveRecordTypeDeclaration < TypeDeclarations::Handlers::ExtendDetachedEntityTypeDeclaration
+      class PrimaryKeyDesugarizer <
+        TypeDeclarations::Handlers::ExtendDetachedEntityTypeDeclaration::PrimaryKeyDesugarizer
       end
     end
   end

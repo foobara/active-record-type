@@ -1,7 +1,7 @@
 module Foobara
   module ActiveRecordType
-    module TypeDeclarationHandlers
-      class RegisteredActiveRecordBaseClassDesugarizer < TypeDeclarations::Desugarizer
+    class ExtendActiveRecordTypeDeclaration <  TypeDeclarations::Handlers::ExtendDetachedEntityTypeDeclaration
+      class ActiveRecordBaseClassDesugarizer < TypeDeclarations::Desugarizer
         def applicable?(klass)
           klass.is_a?(Class) && klass < ActiveRecord::Base
         end
@@ -73,6 +73,10 @@ module Foobara
           active_record_class.columns.find do |column|
             column.name == name
           end
+        end
+
+        def priority
+          Priority::FIRST - 1
         end
       end
     end
