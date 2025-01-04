@@ -1,7 +1,7 @@
-## [Unreleased]
+## [0.0.1]
 
-- Move version.rb.erb to top-level
+- Release as a gem
 
-## [0.0.1] - 2024-12-16
+## [0.0.0] - 2024-12-16
 
-- Initial release
+- Project birth

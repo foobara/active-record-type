@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Miles Georgi"]
   spec.email = ["azimux@gmail.com"]
 
-  spec.summary = "No description. Add one."
+  spec.summary = "Provides a detached entity foobara type for Active Record classes"
   spec.homepage = "https://github.com/foobara/active-record-type"
   spec.license = "MPL-2.0"
   spec.required_ruby_version = ">= #{minimum_ruby_version}"
