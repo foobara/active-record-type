@@ -7,7 +7,9 @@ module Foobara
         end
 
         def desugarize(active_record_class)
-          if active_record_class.superclass != ActiveRecord::Base
+          active_record_superclass = active_record_class.superclass
+
+          if active_record_superclass != ActiveRecord::Base
             # this will register a foobara type for the base class
             type_for_declaration(active_record_class.superclass)
           end
@@ -16,7 +18,7 @@ module Foobara
             type: :active_record,
             model_class: active_record_class.name,
             name: active_record_class.name,
-            model_base_class: active_record_class.superclass.name,
+            model_base_class: active_record_superclass.name,
             model_module: Util.module_for(active_record_class)&.name,
             primary_key: active_record_class.primary_key,
             attributes_declaration: active_record_class_to_attributes_declaration(active_record_class)

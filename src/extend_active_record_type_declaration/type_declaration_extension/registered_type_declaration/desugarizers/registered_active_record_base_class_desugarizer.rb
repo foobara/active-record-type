@@ -5,13 +5,14 @@ module Foobara
         module RegisteredTypeDeclaration
           module Desugarizers
             class RegisteredActiveRecordBaseClassDesugarizer < TypeDeclarations::Desugarizer
-              def applicable?(klass)
-                klass.is_a?(Class) && klass < ActiveRecord::Base && type_registered?(klass.name)
+              def applicable?(sugary_type_declaration)
+                sugary_type_declaration.is_a?(Class) && sugary_type_declaration < ActiveRecord::Base &&
+                  sugary_type_declaration.foobara_type
               end
 
               def desugarize(active_record_class)
                 {
-                  type: active_record_class.name
+                  type: active_record_class.foobara_type.foobara_manifest_reference.to_sym
                 }
               end
 

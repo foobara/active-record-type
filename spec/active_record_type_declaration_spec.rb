@@ -13,6 +13,24 @@ RSpec.describe "creating a foobara :active_record type" do
   let(:type_declaration) { SomeDomain::Capybara }
   let(:type) { Foobara::GlobalDomain.foobara_type_from_declaration(type_declaration) }
 
+  context "when declaring as a command input as an active record class" do
+    let(:command_class) do
+      stub_class "SomeDomain::SomeCommand", Foobara::Command do
+        inputs do
+          capybara SomeDomain::Capybara
+        end
+      end
+    end
+
+    it "has a simple declaration data" do
+      expect(
+        command_class.inputs_type.declaration_data[:element_type_declarations][:capybara]
+      ).to eq(
+        type: :"SomeDomain::SomeDomain::Capybara"
+      )
+    end
+  end
+
   context "when declaring via active record class" do
     it "creates a foobara :active_record type with the expected attributes" do
       expect(type).to be_a(Foobara::Type)
