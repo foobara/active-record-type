@@ -10,8 +10,10 @@ module Foobara
           active_record_superclass = active_record_class.superclass
 
           if active_record_superclass != ActiveRecord::Base
-            # this will register a foobara type for the base class
-            type_for_declaration(active_record_class.superclass)
+            if active_record_superclass.attribute_names.include?(active_record_class.primary_key)
+              # this will register a foobara type for the base class
+              type_for_declaration(active_record_class.superclass)
+            end
           end
 
           {

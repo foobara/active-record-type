@@ -13,7 +13,9 @@ module Foobara
               handler = handler_for_class(TypeDeclarations::Handlers::ExtendAttributesTypeDeclaration)
               attributes_type_declaration = type.declaration_data[:attributes_declaration]
 
-              type.element_types = handler.process_value!(attributes_type_declaration).element_types
+              active_record_class.foobara_attributes_type = handler.process_value!(attributes_type_declaration)
+
+              type.element_types = active_record_class.foobara_attributes_type.element_types
               type_name = type.declaration_data[:name]
 
               # We don't want to check that the active record is valid as if it were a model
