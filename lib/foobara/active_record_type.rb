@@ -18,6 +18,8 @@ module Foobara
         )
 
         BuiltinTypes.install_type_declaration_extensions_for(ExtendActiveRecordTypeDeclaration)
+
+        ActiveRecord::Base.include Foobara::ModelAttributeHelpers::Concerns::AttributeHelpers
       end
 
       def reset_all

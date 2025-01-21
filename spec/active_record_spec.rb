@@ -14,4 +14,15 @@ RSpec.describe "active record test plumbing" do
 
     expect(capybara.age).to be(100)
   end
+
+  context "when using it as a foobara type" do
+    before do
+      Foobara::GlobalDomain.foobara_type_from_declaration(Capybara)
+    end
+
+    it "has attribute helpers" do
+      expect(Capybara.foobara_attributes_for_update).to be_a(Hash)
+      expect(Capybara.foobara_attributes_for_update[:element_type_declarations]).to include(:name, :age)
+    end
+  end
 end
