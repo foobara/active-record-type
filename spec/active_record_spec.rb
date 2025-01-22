@@ -28,8 +28,15 @@ RSpec.describe "active record test plumbing" do
     end
 
     it "has attribute helpers" do
-      expect(SomeDomain::Capybara.foobara_attributes_for_update).to be_a(Hash)
-      expect(SomeDomain::Capybara.foobara_attributes_for_update[:element_type_declarations]).to include(:name, :age)
+      %i[
+        foobara_attributes_for_create
+        foobara_attributes_for_update
+        foobara_attributes_for_atom_update
+        foobara_attributes_for_find_by
+      ].each do |method|
+        declaration = SomeDomain::Capybara.send(method)
+        expect(declaration[:element_type_declarations]).to include(:name, :age)
+      end
     end
 
     it "has a foobara_primary_key_type" do

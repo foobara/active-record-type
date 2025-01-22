@@ -1,4 +1,4 @@
-## [0.0.5] - 2025-01-21
+## [0.0.6] - 2025-01-22
 
 - Make use of ModelAttributeHelpers
 
