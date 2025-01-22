@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    foobara-active-record-type (0.0.4)
+    foobara-active-record-type (0.0.5)
       activerecord
       foobara
 

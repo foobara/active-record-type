@@ -8,6 +8,18 @@ module ActiveRecordFoobaraMethods
     def foobara_associations
       {}
     end
+
+    def foobara_primary_key_attribute
+      primary_key
+    end
+
+    def foobara_primary_key_type
+      return @foobara_primary_key_type if @foobara_primary_key_type
+
+      domain = foobara_type.foobara_domain
+      declaration = Foobara::ActiveRecordType.column_name_to_foobara_type_declaration(self, primary_key)
+      @foobara_primary_key_type = domain.foobara_type_from_declaration(declaration)
+    end
   end
 end
 
