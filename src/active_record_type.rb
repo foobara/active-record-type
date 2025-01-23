@@ -10,7 +10,7 @@ module Foobara
         column_type = column.sql_type_metadata.type
 
         type_declaration = case column_type
-                           when :integer, :string, :datetime
+                           when :integer, :string, :datetime, :boolean
                              column_type
                            else
                              # :nocov:
