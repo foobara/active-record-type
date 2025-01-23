@@ -51,6 +51,12 @@ module Foobara
     end
     # rubocop:enable Style/TrivialAccessors
 
+    def ==(other)
+      return false unless @foobara_primary_key
+
+      other.instance_of?(@foobara_active_record_class) && @foobara_primary_key == other.id
+    end
+
     private
 
     # TODO: there are probably several other methods that don't require loading
