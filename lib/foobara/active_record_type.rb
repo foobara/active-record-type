@@ -21,6 +21,14 @@ module Foobara
 
         ActiveRecord::Base.include ModelAttributeHelpers::Concerns::AttributeHelpers
         ActiveRecord::Base.include ActiveRecordFoobaraMethods
+
+        if defined?(Foobara::CommandConnectors::RailsCommandConnector)
+          Foobara::CommandConnectors::RailsCommandConnector.default_serializers = [
+            Foobara::CommandConnectors::Serializers::ErrorsSerializer,
+            Foobara::CommandConnectors::Serializers::ActiveRecordAtomicSerializer,
+            Foobara::CommandConnectors::Serializers::JsonSerializer
+          ]
+        end
       end
 
       def reset_all

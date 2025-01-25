@@ -1,3 +1,7 @@
+## [0.0.8] - 2025-01-25
+
+- Add some serializers to handle active record serialization
+
 ## [0.0.7] - 2025-01-22
 
 - Make use of ModelAttributeHelpers

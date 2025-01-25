@@ -4,6 +4,8 @@ ruby File.read("#{__dir__}/.ruby-version")
 gemspec
 
 gem "foobara-dotenv-loader"
+# including this in test mode to test setting default serializers
+gem "foobara-rails-command-connector"
 
 gem "rake"
 
