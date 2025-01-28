@@ -18,11 +18,6 @@ module Foobara
               type.element_types = active_record_class.foobara_attributes_type.element_types
               type_name = type.declaration_data[:name]
 
-              # We don't want to check that the active record is valid as if it were a model
-              type.validators.delete_if do |validator|
-                validator.symbol == :attributes_declaration
-              end
-
               domain = Domain.domain_through_modules(active_record_class)
               domain.foobara_register_type(type_name, type)
             end

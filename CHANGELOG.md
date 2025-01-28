@@ -1,3 +1,7 @@
+## [0.0.9] - 2025-01-28
+
+- Fix problem with attributes declaration validator breaking things
+
 ## [0.0.8] - 2025-01-25
 
 - Add some serializers to handle active record serialization

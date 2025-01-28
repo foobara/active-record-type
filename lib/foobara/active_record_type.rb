@@ -10,12 +10,13 @@ module Foobara
         TypeDeclarations.register_type_declaration(ExtendActiveRecordTypeDeclaration.new)
 
         detached_entity = Namespace.global.foobara_lookup_type!(:detached_entity)
-        BuiltinTypes.build_and_register!(
+        type = BuiltinTypes.build_and_register!(
           :active_record,
           detached_entity,
           nil,
           type_module: Foobara::ActiveRecordType
         )
+        type.remove_processor_by_symbol(:attributes_declaration)
 
         BuiltinTypes.install_type_declaration_extensions_for(ExtendActiveRecordTypeDeclaration)
 
