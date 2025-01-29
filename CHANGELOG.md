@@ -1,3 +1,7 @@
+## [0.0.10] - 2025-01-29
+
+- Fix bug causing duplication of domain name in type name
+
 ## [0.0.9] - 2025-01-28
 
 - Fix problem with attributes declaration validator breaking things

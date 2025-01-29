@@ -19,6 +19,9 @@ module Foobara
               type_name = type.declaration_data[:name]
 
               domain = Domain.domain_through_modules(active_record_class)
+
+              type_name = type_name.gsub(/^#{domain.scoped_full_name}::/, "")
+
               domain.foobara_register_type(type_name, type)
             end
           end

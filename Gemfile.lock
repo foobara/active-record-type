@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    foobara-active-record-type (0.0.9)
+    foobara-active-record-type (0.0.10)
       activerecord
       foobara
 
@@ -104,9 +104,9 @@ GEM
       foobara-files-generator
     foobara-files-generator (0.0.5)
       foobara
-    foobara-http-command-connector (0.0.11)
+    foobara-http-command-connector (0.0.12)
       foobara
-    foobara-local-files-crud-driver-generator (0.0.2)
+    foobara-local-files-crud-driver-generator (0.0.3)
       foobara
       foobara-files-generator
     foobara-organization-generator (0.0.2)
@@ -120,7 +120,7 @@ GEM
     foobara-rack-connector-generator (0.0.7)
       foobara
       foobara-files-generator
-    foobara-rails-command-connector (0.0.4)
+    foobara-rails-command-connector (0.0.5)
       foobara-rack-connector
     foobara-redis-crud-driver-generator (0.0.3)
       foobara

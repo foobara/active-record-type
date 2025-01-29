@@ -16,10 +16,14 @@ module Foobara
             end
           end
 
+          domain = Foobara::Domain.domain_through_modules(active_record_class)
+
+          name = active_record_class.name.gsub(/^#{domain.scoped_full_name}::/, "")
+
           {
             type: :active_record,
             model_class: active_record_class.name,
-            name: active_record_class.name,
+            name:,
             model_base_class: active_record_superclass.name,
             model_module: Util.module_for(active_record_class)&.name,
             primary_key: active_record_class.primary_key,

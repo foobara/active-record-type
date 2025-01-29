@@ -42,5 +42,10 @@ RSpec.describe "active record test plumbing" do
     it "has a foobara_primary_key_type" do
       expect(SomeDomain::Capybara.foobara_primary_key_type).to be(Foobara::BuiltinTypes[:integer])
     end
+
+    it "is properly scoped" do
+      expect(SomeDomain::Capybara.foobara_type.scoped_full_name).to eq("SomeDomain::Capybara")
+      expect(SomeDomain::Capybara.foobara_type.declaration_data[:name]).to eq("Capybara")
+    end
   end
 end
