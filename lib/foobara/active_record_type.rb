@@ -22,6 +22,8 @@ module Foobara
 
         ActiveRecord::Base.include ModelAttributeHelpers::Concerns::AttributeHelpers
         ActiveRecord::Base.include ActiveRecordFoobaraMethods
+        ActiveRecord::Base.include Foobara::DetachedEntity::Concerns::Reflection
+        ActiveRecord::Base.include Foobara::Model::Concerns::Reflection
 
         if defined?(Foobara::CommandConnectors::RailsCommandConnector)
           Foobara::CommandConnectors::RailsCommandConnector.default_serializers = [

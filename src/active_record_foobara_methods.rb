@@ -11,8 +11,20 @@ module Foobara
           {}
         end
 
+        # TODO: implement this or figure out how to re-use the methods from Entity/Model
+        def foobara_deep_associations
+          # TODO: test this
+          # :nocov:
+          {}
+          # :nocov:
+        end
+
+        def foobara_model_name
+          foobara_type&.scoped_name || Util.non_full_name(self)
+        end
+
         def foobara_primary_key_attribute
-          primary_key
+          primary_key&.to_sym
         end
 
         def foobara_primary_key_type

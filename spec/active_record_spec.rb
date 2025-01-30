@@ -4,6 +4,8 @@ RSpec.describe "active record test plumbing" do
       foobara_domain!
     end
     stub_class "SomeDomain::Capybara", ActiveRecord::Base
+
+    Foobara::GlobalDomain.foobara_type_from_declaration(SomeDomain::Capybara)
   end
 
   after do
@@ -22,30 +24,25 @@ RSpec.describe "active record test plumbing" do
     expect(capybara.age).to be(100)
   end
 
-  context "when using it as a foobara type" do
-    before do
-      Foobara::GlobalDomain.foobara_type_from_declaration(SomeDomain::Capybara)
+  it "has attribute helpers" do
+    %i[
+      foobara_attributes_for_create
+      foobara_attributes_for_update
+      foobara_attributes_for_atom_update
+      foobara_attributes_for_find_by
+    ].each do |method|
+      declaration = SomeDomain::Capybara.send(method)
+      expect(declaration[:element_type_declarations]).to include(:name, :age)
     end
+  end
 
-    it "has attribute helpers" do
-      %i[
-        foobara_attributes_for_create
-        foobara_attributes_for_update
-        foobara_attributes_for_atom_update
-        foobara_attributes_for_find_by
-      ].each do |method|
-        declaration = SomeDomain::Capybara.send(method)
-        expect(declaration[:element_type_declarations]).to include(:name, :age)
-      end
-    end
+  it "has a foobara_primary_key_type" do
+    expect(SomeDomain::Capybara.foobara_primary_key_type).to be(Foobara::BuiltinTypes[:integer])
+  end
 
-    it "has a foobara_primary_key_type" do
-      expect(SomeDomain::Capybara.foobara_primary_key_type).to be(Foobara::BuiltinTypes[:integer])
-    end
-
-    it "is properly scoped" do
-      expect(SomeDomain::Capybara.foobara_type.scoped_full_name).to eq("SomeDomain::Capybara")
-      expect(SomeDomain::Capybara.foobara_type.declaration_data[:name]).to eq("Capybara")
-    end
+  it "is properly scoped" do
+    expect(SomeDomain::Capybara.foobara_type.scoped_full_name).to eq("SomeDomain::Capybara")
+    expect(SomeDomain::Capybara.foobara_type.declaration_data[:name]).to eq("Capybara")
+    expect(SomeDomain::Capybara.foobara_type.foobara_manifest.key?(:attributes_type)).to be true
   end
 end

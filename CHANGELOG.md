@@ -1,3 +1,8 @@
+## [0.0.11] - 2025-01-30
+
+- Add some missing methods to ActiveRecord::Base
+- Fix bug where primary key is a string instead of a symbol
+
 ## [0.0.10] - 2025-01-29
 
 - Fix bug causing duplication of domain name in type name
