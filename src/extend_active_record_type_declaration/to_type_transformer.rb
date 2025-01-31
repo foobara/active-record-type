@@ -42,6 +42,10 @@ module Foobara
             *super
           ]
         end
+
+        def type_class
+          Foobara::DetachedEntityType
+        end
       end
     end
   end

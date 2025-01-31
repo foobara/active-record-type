@@ -1,3 +1,7 @@
+## [0.0.13] - 2025-01-31
+
+- Make sure our type is a DetachedEntityType not a Type
+
 ## [0.0.12] - 2025-01-30
 
 - Add some missing methods to ActiveRecord::Base
