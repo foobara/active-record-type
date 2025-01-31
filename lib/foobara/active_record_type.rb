@@ -32,6 +32,9 @@ module Foobara
             Foobara::CommandConnectors::Serializers::JsonSerializer
           ]
         end
+
+        DetachedEntityType.types_requiring_conversion << :active_record
+        DetachedEntityType.model_base_classes_requiring_conversion << "ActiveRecord::Base"
       end
 
       def reset_all
