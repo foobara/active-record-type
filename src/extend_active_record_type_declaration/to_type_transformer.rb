@@ -46,6 +46,10 @@ module Foobara
         def type_class
           Foobara::DetachedEntityType
         end
+
+        def type_name(strict_type_declaration)
+          strict_type_declaration[:name]
+        end
       end
     end
   end

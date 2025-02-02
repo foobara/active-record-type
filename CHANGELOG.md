@@ -1,3 +1,7 @@
+## [0.0.14] - 2025-02-02
+
+- Fix manifest name bug
+
 ## [0.0.13] - 2025-01-31
 
 - Make sure our type is a DetachedEntityType not a Type
