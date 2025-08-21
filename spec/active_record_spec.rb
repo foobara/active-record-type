@@ -25,11 +25,11 @@ RSpec.describe "active record test plumbing" do
   end
 
   it "has attribute helpers" do
-    %i[
-      foobara_attributes_for_create
-      foobara_attributes_for_update
-      foobara_attributes_for_atom_update
-      foobara_attributes_for_find_by
+    [
+      :foobara_attributes_for_create,
+      :foobara_attributes_for_update,
+      :foobara_attributes_for_atom_update,
+      :foobara_attributes_for_find_by
     ].each do |method|
       declaration = SomeDomain::Capybara.send(method)
       expect(declaration[:element_type_declarations]).to include(:name, :age)

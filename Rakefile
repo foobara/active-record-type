@@ -7,7 +7,7 @@ require "rubocop/rake_task"
 
 RuboCop::RakeTask.new
 
-task default: %i[spec rubocop]
+task default: [:spec, :rubocop]
 
 task :environment do
   require_relative "boot"
@@ -54,7 +54,7 @@ namespace :db do
   end
 
   desc "Reset the database"
-  task reset: %i[drop create migrate]
+  task reset: [:drop, :create, :migrate]
 
   desc "Create a db/schema.rb file"
   task :schema do

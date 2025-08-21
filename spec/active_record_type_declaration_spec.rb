@@ -102,7 +102,7 @@ RSpec.describe "creating a foobara :active_record type" do
             updated_at: { type: :datetime }
           },
           defaults: {},
-          required: %i[id name created_at updated_at]
+          required: [:id, :name, :created_at, :updated_at]
         }
       }
     end
