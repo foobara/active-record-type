@@ -1,34 +1,42 @@
 module Foobara
   module ActiveRecordType
-    class ExtendActiveRecordTypeDeclaration <  TypeDeclarations::Handlers::ExtendDetachedEntityTypeDeclaration
+    class ExtendActiveRecordTypeDeclaration < TypeDeclarations::Handlers::ExtendDetachedEntityTypeDeclaration
       class ActiveRecordBaseClassDesugarizer < TypeDeclarations::Desugarizer
-        def applicable?(klass)
-          klass.is_a?(Class) && klass < ActiveRecord::Base
+        def applicable?(sugary_type_declaration)
+          if sugary_type_declaration.class?
+            sugary_type_declaration.declaration_data < ActiveRecord::Base
+          end
         end
 
-        def desugarize(active_record_class)
-          active_record_superclass = active_record_class.superclass
+        def desugarize(sugary_type_declaration)
+          klass = sugary_type_declaration.declaration_data
+          active_record_superclass = klass.superclass
 
           if active_record_superclass != ActiveRecord::Base
-            if active_record_superclass.attribute_names.include?(active_record_class.primary_key)
+            if active_record_superclass.attribute_names.include?(klass.primary_key)
               # this will register a foobara type for the base class
-              type_for_declaration(active_record_class.superclass)
+              type_for_declaration(klass.superclass)
             end
           end
 
-          domain = Foobara::Domain.domain_through_modules(active_record_class)
+          domain = Foobara::Domain.domain_through_modules(klass)
 
-          name = active_record_class.name.gsub(/^#{domain.scoped_full_name}::/, "")
+          name = klass.name.gsub(/^#{domain.scoped_full_name}::/, "")
 
-          {
+          sugary_type_declaration.declaration_data = {
             type: :active_record,
-            model_class: active_record_class.name,
+            model_class: klass.name,
             name:,
             model_base_class: active_record_superclass.name,
-            model_module: Util.module_for(active_record_class)&.name,
-            primary_key: active_record_class.primary_key,
-            attributes_declaration: active_record_class_to_attributes_declaration(active_record_class)
+            model_module: Util.module_for(klass)&.name,
+            primary_key: klass.primary_key,
+            attributes_declaration: active_record_class_to_attributes_declaration(klass)
           }
+
+          sugary_type_declaration.is_duped = true
+          sugary_type_declaration.is_deep_duped = true
+
+          sugary_type_declaration
         end
 
         def column_to_foobara_type_declaration(column)

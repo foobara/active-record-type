@@ -7,12 +7,11 @@ gemspec
 
 gem "foobara-dotenv-loader", "< 2.0.0"
 # including this in test mode to test setting default serializers
-gem "foobara-rails-command-connector", "< 2.0.0", path: "../rails-command-connector"
+gem "foobara-rails-command-connector", "< 2.0.0" # , path: "../rails-command-connector"
 
 gem "rake"
 
 group :development do
-  gem "foob", "< 2.0.0"
   gem "foobara-rubocop-rules", "< 2.0.0"
   gem "guard-rspec"
   gem "rubocop-rake"

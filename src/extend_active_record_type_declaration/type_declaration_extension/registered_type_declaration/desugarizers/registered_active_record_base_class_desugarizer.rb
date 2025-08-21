@@ -6,14 +6,24 @@ module Foobara
           module Desugarizers
             class RegisteredActiveRecordBaseClassDesugarizer < TypeDeclarations::Desugarizer
               def applicable?(sugary_type_declaration)
-                sugary_type_declaration.is_a?(Class) && sugary_type_declaration < ActiveRecord::Base &&
-                  sugary_type_declaration.foobara_type
+                if sugary_type_declaration.class?
+                  klass = sugary_type_declaration.declaration_data
+
+                  if klass < ActiveRecord::Base
+                    klass.foobara_type
+                  end
+                end
               end
 
-              def desugarize(active_record_class)
-                {
-                  type: active_record_class.foobara_type.foobara_manifest_reference.to_sym
-                }
+              def desugarize(sugary_declaration)
+                klass = sugary_declaration.declaration_data
+                type = klass.foobara_type
+
+                sugary_declaration.type = type
+                sugary_declaration.declaration_data = type.foobara_manifest_reference.to_sym
+                sugary_declaration.is_strict = true
+
+                sugary_declaration
               end
 
               def priority

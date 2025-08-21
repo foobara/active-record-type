@@ -4,7 +4,9 @@ module Foobara
       class ActiveRecordAtomicSerializer < AtomicSerializer
         def serialize(object)
           if object.is_a?(ActiveRecord::Base)
-            super(object.attributes)
+            super(
+              entities_to_primary_keys_serializer.serialize(object.attributes)
+            )
           else
             super
           end

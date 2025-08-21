@@ -17,6 +17,7 @@ module Foobara
           type_module: Foobara::ActiveRecordType
         )
         type.remove_processor_by_symbol(:attributes_declaration)
+        type.remove_processor_by_symbol(:model_instance_is_valid)
 
         BuiltinTypes.install_type_declaration_extensions_for(ExtendActiveRecordTypeDeclaration)
 
@@ -24,6 +25,7 @@ module Foobara
         ActiveRecord::Base.include ActiveRecordFoobaraMethods
         ActiveRecord::Base.include Foobara::Model::Concerns::Reflection
         ActiveRecord::Base.include Foobara::DetachedEntity::Concerns::Reflection
+        # ActiveRecord::Base.include Foobara::Model::Concerns::Errors
 
         if defined?(Foobara::CommandConnectors::RailsCommandConnector)
           Foobara::CommandConnectors::RailsCommandConnector.default_serializers = [

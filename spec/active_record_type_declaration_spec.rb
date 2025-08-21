@@ -25,9 +25,10 @@ RSpec.describe "creating a foobara :active_record type" do
     it "has a simple declaration data" do
       expect(
         command_class.inputs_type.declaration_data[:element_type_declarations][:capybara]
-      ).to eq(
-        type: :"SomeDomain::Capybara"
-      )
+      ).to eq(:"SomeDomain::Capybara")
+
+      type2 = Foobara::Domain.current.foobara_type_from_declaration(SomeDomain::Capybara)
+      expect(type2.target_class).to eq(SomeDomain::Capybara)
     end
   end
 

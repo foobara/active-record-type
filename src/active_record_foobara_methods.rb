@@ -11,6 +11,14 @@ module Foobara
           {}
         end
 
+        def foobara_delegates
+          {}
+        end
+
+        def foobara_private_attribute_names
+          []
+        end
+
         # TODO: implement this or figure out how to re-use the methods from Entity/Model
         def foobara_deep_associations
           # TODO: test this
@@ -36,7 +44,13 @@ module Foobara
         end
 
         def foobara_attributes_for_create(...)
-          TypeDeclarations::Attributes.reject(super, :created_at, :updated_at)
+          attributes = super
+
+          if attributes.is_a?(Types::Type)
+            attributes = attributes.declaration_data
+          end
+
+          TypeDeclarations::Attributes.reject(attributes, :created_at, :updated_at)
         end
 
         def foobara_attributes_for_update(...)
