@@ -13,7 +13,9 @@ module Foobara
               handler = handler_for_class(TypeDeclarations::Handlers::ExtendAttributesTypeDeclaration)
               attributes_type_declaration = type.declaration_data[:attributes_declaration]
 
-              active_record_class.foobara_attributes_type = handler.process_value!(attributes_type_declaration)
+              active_record_class.foobara_attributes_type = TypeDeclarations.strict do
+                handler.process_value!(TypeDeclaration.new(attributes_type_declaration))
+              end
 
               type.element_types = active_record_class.foobara_attributes_type.element_types
               type_name = type.declaration_data[:name]

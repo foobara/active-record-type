@@ -1,9 +1,10 @@
 module Foobara
   module ActiveRecordType
     class ExtendActiveRecordTypeDeclaration < TypeDeclarations::Handlers::ExtendDetachedEntityTypeDeclaration
-      def applicable?(*args, **opts, &)
-        arg = args.first
-        (arg.is_a?(Class) && arg < ActiveRecord::Base) || super
+      def applicable?(sugary_type_declaration)
+        if sugary_type_declaration.class?
+          sugary_type_declaration.declaration_data < ActiveRecord::Base
+        end || super
       end
 
       def expected_type_symbol
